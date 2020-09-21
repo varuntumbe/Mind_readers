@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Profile_Page
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="media row">
+        <div class="media-left col-md-2">
+            <span><i class="fa fa-user fa-5x" aria-hidden="true"></i></span>
+        </div>
+        <div class="row">
+            <div class="media-body ">
+                <h2 class="media-heading">{{ my_info.name }}</h2><br>
+                <h4>{{ my_info.about_me }}</h4><br>
+                <h5>Contact No : {{ my_info.phno }}</h5><br>
+                <h5>Address : {{ my_info.address }}</h5><br>
+                {% if not current_user.is_anonymous and current_user.has_role('psycologist') %}
+                <button><a href="{{ url_for('setprofile') }}">Edit Profile</a></button>
+                {% endif %}
+            </div>
+        </div>
+      </div>
+</div>
+{% endblock %}

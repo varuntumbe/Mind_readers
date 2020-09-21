@@ -1,0 +1,30 @@
+{% macro question(id,qt,qd,ans,psy_id) %}
+<table class="table table-hover">
+    <tr>
+        <td width="100px">
+            <h5>Post no : {{ id }}</h5>
+            <br>
+        </td>
+        <td>
+            <p>Question Title : </p>
+            <p>
+                {{ qt }}
+            </p>
+            <br>
+            <p>Question Descreption :</p>
+            {{ qd }}
+            <br>
+            <br>
+            <p>Ans :</p>
+            {% if ans==None %}
+                <span><em>No Answers Yet!!</em></span>
+            {% else %}
+                <span><em>{{ ans }}</em></span><br>    
+                {% if psy_id > 3  %}
+                <button><a href="{{ url_for('viewprofile',psy_id=psy_id) }}">view profile</a></button>
+                {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+</table>
+{% endmacro %}
