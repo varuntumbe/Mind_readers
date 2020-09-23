@@ -11,7 +11,8 @@ Answer Page
     {% set counter=0 %}
     {% for q in questions %}
         {% if q.ans_text==None %}
-        {% set counter=counter+1 %}
+        {% set counter = counter + 1 %}
+        
         <div>
             {{ quest.question(q.id,q.q_title,q.q_desc,q.ans_text,0) }}
             <form action="{{ url_for('answers',q_id=q.id) }}" method="POST">
@@ -30,8 +31,9 @@ Answer Page
     {% endfor %}
     {% if counter==0 %}
     <div>
-        <h2>You Answered Everything !!</h2>
+        <h2>You Answered Everything !! {{ counter }}</h2>
     </div>
     {% endif %}
 </div>
+{{ super() }}
 {% endblock %}

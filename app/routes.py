@@ -57,15 +57,15 @@ def add_to_db(pk,db_type):
     else:
         psy=Psycologists.query.filter(Psycologists.id==pk).first()
         user=user_datastore.create_user(email=psy.email,password=psy.password)
-        #setting up their profile also
-        pr=Profile(psy_id=pk,id=pk)
-        db.session.add(pr)
-        db.session.commit()
-
         db.session.add(user)
         db.session.commit()
         role=Roles.query.filter(Roles.id==2).first()
         re=user_datastore.add_role_to_user(user,role)
+        db.session.commit()
+        #setting up their profile also ----------------some bug about unique constraint
+        psy_id=Users.query.filter(Users.email==psy.email).first().id
+        pr=Profile(psy_id=psy_id,id=psy_id)
+        db.session.add(pr)
         db.session.commit()
         if re:
             db.session.delete(psy)
