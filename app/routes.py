@@ -49,7 +49,7 @@ def add_to_db(pk,db_type):
         if pre_psy_id>=0 and pre_psy_id<=3:
             pre_psy_id=4
 
-        f_obj=FilQuestions(q_title=unf_obj.q_title,q_desc=unf_obj.q_desc,psy_id=pre_psy_id)
+        f_obj=FilQuestions(q_title=unf_obj.q_title,q_desc=unf_obj.q_desc,psy_id=pre_psy_id,no_upvotes=0)
         db.session.add(f_obj)
         db.session.commit()
         db.session.delete(unf_obj)

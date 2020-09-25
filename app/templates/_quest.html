@@ -1,4 +1,4 @@
-{% macro question(id,qt,qd,ans,psy_id) %}
+{% macro question(id,qt,qd,ans,psy_id,upvotes) %}
 <table class="table table-hover">
     <tr>
         <td width="100px">
@@ -13,6 +13,9 @@
             <br>
             <p>Question Descreption :</p>
             {{ qd }}
+            <br>
+            <!-- ---------------------------------------------------------------HERE AJAX is required-------------------------------- -->
+            <h3>Like : <i class="fa fa-thumbs-up" aria-hidden="true"></i> : {{ upvotes }}</h3>
             <br>
             <br>
             <p>Ans :</p>

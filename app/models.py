@@ -68,7 +68,8 @@ class FilQuestions(db.Model):
     q_desc=db.Column(db.String(300),nullable=False)
     timestamp=db.Column(db.DateTime,index=True,default=datetime.utcnow)
     ans_text=db.Column(db.String(200),index=True)
-    psy_id=db.Column(db.Integer,db.ForeignKey('users.id'))  
+    psy_id=db.Column(db.Integer,db.ForeignKey('users.id'))
+    no_upvotes=db.Column(db.Integer)  
     def __repr__(self):
         return '<QuestionTitle {} >'.format(self.q_title)
 

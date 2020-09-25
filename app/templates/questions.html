@@ -10,7 +10,7 @@ Question_Page
 <div class="container">
     {% for q in questions %}
     <div>
-        {{ quest.question(q.id,q.q_title,q.q_desc,q.ans_text,q.psy_id) }}
+        {{ quest.question(q.id,q.q_title,q.q_desc,q.ans_text,q.psy_id,q.no_upvotes) }}
     </div>
     {% endfor %}
 </div>
