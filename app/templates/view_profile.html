@@ -4,24 +4,112 @@
     Profile_Page
 {% endblock %}
 
+{% block head %}
+
+{{ super() }}
+<style>
+    .fo{
+        font-family: 'Kanit', sans-serif;
+        font-size: medium;
+    }
+</style>
+<link rel="stylesheet" href="../static/css/style.css" />
+
+{% endblock %}
+
+
 {% block content %}
-<div class="container">
-    <div class="media row">
-        <div class="media-left col-md-2">
-            <span><i class="fa fa-user fa-5x" aria-hidden="true"></i></span>
+
+
+<section class="container fo">
+
+    <div class="profile-grid my-1">
+       <!-- Top -->
+      <div class="profile-top bg-primary p-2">
+        <!-- <img
+          class="round-img my-1"
+          src=""                                 
+          alt="umesh"
+        /> -->
+        <h1 class="large">{{ my_info.first_name }} {{ my_info.last_name }}</h1>
+        <h3>{{ my_info.qualification }}</h3>
+        <p>{{ my_info.phno }}</p>
+      </div>
+
+      <!-- About -->
+      <div class="profile-about bg-light p-2">
+        <h2 class="text-primary">{{ my_info.first_name }}'s Bio</h2>
+        <p>
+            {{ my_info.about_me }}
+        </p>
+        <div class="line"></div>
+      </div>
+
+      <!-- Experience -->
+      <div class="profile-exp bg-white p-2 ">
+        <h2 class="text-primary">Experience</h2>
+        <div>
+          <h3 class="text-dark">Microsoft</h3>
+          <p>Oct 2011 - Current</p>
+          <p><strong>Position: </strong>Senior Developer</p>
+          <p >
+            <strong>Description: </strong>Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Dignissimos placeat, dolorum ullam
+            ipsam, sapiente suscipit dicta eius velit amet aspernatur
+            asperiores modi quidem expedita fugit.
+          </p>
         </div>
-        <div class="row">
-            <div class="media-body ">
-                <h2 class="media-heading">{{ my_info.name }}</h2><br>
-                <h4>{{ my_info.about_me }}</h4><br>
-                <h5>Contact No : {{ my_info.phno }}</h5><br>
-                <h5>Address : {{ my_info.address }}</h5><br>
-                {% if not current_user.is_anonymous and current_user.has_role('psycologist') %}
-                <button><a href="{{ url_for('setprofile') }}">Edit Profile</a></button>
-                {% endif %}
-            </div>
+        <div>
+          <h3 class="text-dark">Sun Microsystems</h3>
+          <p>Nov 2004 - Nov 2011</p>
+          <p><strong>Position: </strong>Systems Admin</p>
+          <p>
+            <strong>Description: </strong>Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Dignissimos placeat, dolorum ullam
+            ipsam, sapiente suscipit dicta eius velit amet aspernatur
+            asperiores modi quidem expedita fugit.
+          </p>
         </div>
       </div>
-</div>
+
+      <!-- Education -->
+      <div class="profile-edu bg-white p-2">
+        <h2 class="text-primary">Education</h2>
+        <div>
+          <h3>NIE</h3>
+          <p>Sep 2018 - June 2022</p>
+          <p><strong>Degree: </strong>Masters</p>
+          <p><strong>Field Of Study: </strong>Computer Science</p>
+          <p>
+            <strong>Description: </strong>Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Dignissimos placeat, dolorum ullam
+            ipsam, sapiente suscipit dicta eius velit amet aspernatur
+            asperiores modi quidem expedita fugit.
+          </p>
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div class="profile-github">
+        <h2 class="text-primary my-1">
+          Address
+        </h2>
+        <div class="repo bg-white p-1 my-1">
+          <div>
+            <h4><a href="#" target="_blank"></h4>
+            <p>
+                {{ my_info.address }}
+            </p>
+           <h4>Phone No</h4>
+           <p>{{ my_info.phno }}</p>
+          </div>
+         
+        </div>
+        
+      </div>
+    </div>
+  </section>
+</body>
+
 {{ super() }}
 {% endblock %}

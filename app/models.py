@@ -87,8 +87,10 @@ class Psycologists(db.Model):
 class Profile(db.Model):
     psy_id=db.Column(db.Integer,db.ForeignKey('users.id'))
     id=db.Column(db.Integer,primary_key=True)
-    name=db.Column(db.String(25))
+    first_name=db.Column(db.String(25))
+    last_name=db.Column(db.String(25))
     about_me=db.Column(db.String(100))
+    qualification=db.Column(db.String(50))
     phno=db.Column(db.Integer)
     address=db.Column(db.String(200))
     def __repr__(self):

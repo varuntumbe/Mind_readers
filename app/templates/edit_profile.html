@@ -1,43 +1,48 @@
 {% extends "base.html" %}
+{% from "_formhelpers.html" import render_field %}
 
 {% block title %}
     Profile_Page
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <form action="{{ url_for('setprofile') }}" method="post">
-        {{ form.hidden_tag() }}
-        <div class="form-group row">
-            <div class="col-12">{{ form.name.label }}</div>
-            {{ form.name(size=32) }}
-            {% for err in form.name.errors %}
-                <span style="color: red;">err</span>
-            {% endfor %}
-        </div>
-        <div class="form-group">
-            <div class="col-12">{{ form.about_me.label }}</div>
-            {{ form.about_me(size=64) }}
-            {% for err in form.about_me.errors %}
-                <span style="color: red;">err</span>
-            {% endfor %}
-        </div>
-        <div class="form-group">
-            <div class="col-12">{{ form.phno.label }}</div>
-            {{ form.phno(size=64) }}
-            {% for err in form.phno.errors %}
-                <span style="color: red;">err</span>
-            {% endfor %}
-        </div>
-        <div class="form-group">
-            <div class="col-12">{{ form.address.label }}</div>
-            {{ form.address(size=64) }}
-            {% for err in form.address.errors %}
-                <span style="color: red;">err</span>
-            {% endfor %}
-        </div>
-        {{ form.submit }}
-    </form>
-</div>
+
+
+<div class="container p-3 my-3 bg-dark text-white">
+          
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+        <b> <u> <h1> Edit Profile</h1> </u></b><br>
+     <form action="{{ url_for('setprofile') }}" method="post">
+         
+         <div class="form-group">
+           <div class="row">
+             <div class="col-md-6">
+             {{ render_field(form.first_name,class='form-control') }}
+             </div>
+             <div class="col-md-6">
+             {{ render_field(form.last_name,class='form-control') }}
+            </div></div>
+         </div>
+         <div class="form-group">
+         {{ render_field(form.about_me,class='form-control') }}
+         </div>
+         <div class="form-group">
+            {{ render_field(form.qual,class='form-control') }}
+         </div>
+         <h4> <b> <u>Contact Details </h4>   </b></u><br>
+         <div class="form-group">
+            {{ render_field(form.phno,class='form-control') }}
+         </div>
+         <div class="form-group">
+         {{ render_field(form.address,class='form-control') }}  
+         </div>
+         <button type="submit" class="btn btn-success btn-lg"> Submit </button>
+     </form>
+     </div>
+     </div>
+ </div>
+ 
 {{ super() }}
 {% endblock %}

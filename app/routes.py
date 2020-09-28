@@ -121,14 +121,24 @@ def setprofile():
     form=ProfileForm()
     if form.validate_on_submit and request.method=='POST':
         pr_obj=Profile.query.filter(Profile.id==current_user.id).first()
-        if form.name.data is not None:
-            pr_obj.name=form.name.data
+        if form.first_name.data is not None:
+            pr_obj.first_name=form.first_name.data
+
+        if form.last_name.data is not None:
+            pr_obj.last_name=form.last_name.data
+
         if form.about_me.data is not None:
             pr_obj.about_me=form.about_me.data
+
         if form.phno.data is not None:
             pr_obj.phno=form.phno.data
+
+        if form.qual.data is not None:
+            pr_obj.qualification=form.qual.data
+
         if form.address.data is not None:
             pr_obj.address=form.address.data
+
         db.session.commit()
         return redirect(url_for('index'))
     return render_template('edit_profile.html',form=form)

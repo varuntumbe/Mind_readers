@@ -20,7 +20,7 @@ Bootstrap(app)
 db=SQLAlchemy(app)
 
 #migrate instance
-migrate=Migrate(app,db)
+migrate=Migrate(app,db,render_as_batch=True)
 
 
 #Admin instance

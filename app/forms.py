@@ -5,9 +5,8 @@ from wtforms.validators import DataRequired,Length
 
 #defining the first form (confession title)
 class Confess(FlaskForm):
-    conf_heading=StringField(label='Question',validators=[DataRequired(),Length(min=1,max=100)])
-    conf_desc=TextAreaField(label='Describe',validators=[DataRequired(),Length(min=1,max=300)])
-    submit=SubmitField(label='Submit')
+    conf_heading=TextAreaField(label='Problem/Question',validators=[DataRequired(),Length(min=1,max=100)])
+    conf_desc=TextAreaField(label='Tell us more',validators=[DataRequired(),Length(min=1,max=300)])
 
 #Registration Form
 class RegisterForm(FlaskForm):
@@ -22,8 +21,9 @@ class AnswerForm(FlaskForm):
 
 #profile Form
 class ProfileForm(FlaskForm):
-    name=StringField(label='Name')
-    about_me=TextAreaField(label='About Me')
-    phno=IntegerField(label='Tel.phone')
+    first_name=StringField(label='First Name')
+    last_name=StringField(label='Last Name')
+    about_me=TextAreaField(label='A few words about yourself')
+    qual=StringField(label='Qualifications')
+    phno=IntegerField(label='Telephone No ')
     address=TextAreaField(label='Address')
-    submit=SubmitField(label='Submit')
