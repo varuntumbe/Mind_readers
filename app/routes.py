@@ -119,6 +119,8 @@ def answers():
 @roles_required('psycologist')
 def setprofile():
     form=ProfileForm()
+    user_id=current_user.id
+    cur_user=Profile.query.filter(Profile.id==user_id).first()
     if form.validate_on_submit and request.method=='POST':
         pr_obj=Profile.query.filter(Profile.id==current_user.id).first()
         if form.first_name.data is not None:
@@ -139,9 +141,15 @@ def setprofile():
         if form.address.data is not None:
             pr_obj.address=form.address.data
 
+        if form.experiance.data is not None:
+            pr_obj.experiance=form.experiance.data
+
+        if form.education.data is not None:
+            pr_obj.education=form.education.data
+
         db.session.commit()
         return redirect(url_for('index'))
-    return render_template('edit_profile.html',form=form)
+    return render_template('edit_profile.html',form=form,cur_user=cur_user)
 
 #next route is for view Profile
 @app.route('/view_profile')

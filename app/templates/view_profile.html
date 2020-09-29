@@ -46,48 +46,24 @@
       </div>
 
       <!-- Experience -->
+      {% if my_info.experiance !=None %}
       <div class="profile-exp bg-white p-2 ">
         <h2 class="text-primary">Experience</h2>
-        <div>
-          <h3 class="text-dark">Microsoft</h3>
-          <p>Oct 2011 - Current</p>
-          <p><strong>Position: </strong>Senior Developer</p>
-          <p >
-            <strong>Description: </strong>Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Dignissimos placeat, dolorum ullam
-            ipsam, sapiente suscipit dicta eius velit amet aspernatur
-            asperiores modi quidem expedita fugit.
-          </p>
-        </div>
-        <div>
-          <h3 class="text-dark">Sun Microsystems</h3>
-          <p>Nov 2004 - Nov 2011</p>
-          <p><strong>Position: </strong>Systems Admin</p>
-          <p>
-            <strong>Description: </strong>Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Dignissimos placeat, dolorum ullam
-            ipsam, sapiente suscipit dicta eius velit amet aspernatur
-            asperiores modi quidem expedita fugit.
-          </p>
-        </div>
+        <h4 class="text-dark">
+          {{ my_info.experiance }}
+        </h4>
       </div>
+      {% endif %}
 
       <!-- Education -->
+      {% if my_info.education!=None %}
       <div class="profile-edu bg-white p-2">
         <h2 class="text-primary">Education</h2>
-        <div>
-          <h3>NIE</h3>
-          <p>Sep 2018 - June 2022</p>
-          <p><strong>Degree: </strong>Masters</p>
-          <p><strong>Field Of Study: </strong>Computer Science</p>
-          <p>
-            <strong>Description: </strong>Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Dignissimos placeat, dolorum ullam
-            ipsam, sapiente suscipit dicta eius velit amet aspernatur
-            asperiores modi quidem expedita fugit.
-          </p>
-        </div>
+        <h4>
+          {{ my_info.education }}
+        </h4>
       </div>
+      {% endif %}
 
       <!-- Address -->
       <div class="profile-github">
@@ -106,6 +82,13 @@
          
         </div>
         
+      </div>
+      <div class="row">
+        <div class="col-auto fo">
+          {% if not current_user.is_anonymous and current_user.has_role('psycologist') %}
+          <button class="btn btn-success btn-lg"><a href="{{ url_for('setprofile') }}">Edit Profile</a></button>
+          {% endif %}
+        </div>
       </div>
     </div>
   </section>

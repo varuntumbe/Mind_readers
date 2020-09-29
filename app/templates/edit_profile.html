@@ -19,24 +19,32 @@
          <div class="form-group">
            <div class="row">
              <div class="col-md-6">
-             {{ render_field(form.first_name,class='form-control') }}
+             {{ render_field(form.first_name,class='form-control',value=cur_user.first_name if cur_user.first_name != None) }}
              </div>
              <div class="col-md-6">
-             {{ render_field(form.last_name,class='form-control') }}
+             {{ render_field(form.last_name,class='form-control',value=cur_user.last_name if cur_user.last_name != None) }}
             </div></div>
          </div>
          <div class="form-group">
-         {{ render_field(form.about_me,class='form-control') }}
+         {{ render_field(form.about_me,class='form-control',value=cur_user.about_me if cur_user.about_me != None) }}
          </div>
          <div class="form-group">
-            {{ render_field(form.qual,class='form-control') }}
+            {{ render_field(form.qual,class='form-control',value=cur_user.qualification if cur_user.qualification != None) }}
          </div>
+
+         <div class="form-group">
+            {{ render_field(form.experiance,class='form-control',value=cur_user.experiance if cur_user.experiance != None) }}
+         </div>
+         <div class="form-group">
+            {{ render_field(form.education,class='form-control',value=cur_user.education if cur_user.education != None) }}
+         </div>
+
          <h4> <b> <u>Contact Details </h4>   </b></u><br>
          <div class="form-group">
-            {{ render_field(form.phno,class='form-control') }}
+            {{ render_field(form.phno,class='form-control',value=cur_user.phno if cur_user.phno != None) }}
          </div>
          <div class="form-group">
-         {{ render_field(form.address,class='form-control') }}  
+         {{ render_field(form.address,class='form-control',value=cur_user.address if cur_user.address != None) }} 
          </div>
          <button type="submit" class="btn btn-success btn-lg"> Submit </button>
      </form>

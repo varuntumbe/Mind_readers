@@ -93,6 +93,8 @@ class Profile(db.Model):
     qualification=db.Column(db.String(50))
     phno=db.Column(db.Integer)
     address=db.Column(db.String(200))
+    experiance=db.Column(db.String(150))
+    education=db.Column(db.String(150))
     def __repr__(self):
         return '<profile: {} >'.format(self.name)       
 

@@ -27,3 +27,5 @@ class ProfileForm(FlaskForm):
     qual=StringField(label='Qualifications')
     phno=IntegerField(label='Telephone No ')
     address=TextAreaField(label='Address')
+    experiance=TextAreaField(label='Experiance')
+    education=TextAreaField(label='Education')
