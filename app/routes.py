@@ -13,7 +13,7 @@ from app.useful_func import get_last_record_psy_id
 #home router
 @app.route('/')
 @app.route('/index')
-@login_required
+# @login_required
 def index():
     return render_template('index.html')
 
@@ -115,10 +115,14 @@ def answers():
     return render_template('que_to_be_ansd.html',form=form,questions=all_quest)
 
 #next route is for set_profile
-@app.route('/edit_profile',methods=['GET','POST'])
+@app.route('/edit_profile/<p_id>',methods=['GET','POST'])
 @roles_required('psycologist')
-def setprofile():
-    form=ProfileForm()
+def setprofile(p_id):
+    #simple security fix
+    if int(p_id) != current_user.id:
+        return redirect(url_for('index'))
+
+    form=ProfileForm()                                    #----------------------------Bug is there-------------------------------------#
     user_id=current_user.id
     cur_user=Profile.query.filter(Profile.id==user_id).first()
     if form.validate_on_submit and request.method=='POST':

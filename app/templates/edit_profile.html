@@ -14,7 +14,7 @@
         <div class="col-sm-3"></div>
         <div class="col-sm-6">
         <b> <u> <h1> Edit Profile</h1> </u></b><br>
-     <form action="{{ url_for('setprofile') }}" method="post">
+     <form action="{{ url_for('setprofile',p_id=current_user.id) }}" method="post">
          
          <div class="form-group">
            <div class="row">

@@ -82,8 +82,8 @@
       </div>
       <div class="row">
         <div class="col-auto fo">
-          {% if not current_user.is_anonymous and current_user.has_role('psycologist') %}
-          <button class="btn btn-success btn-lg"><a href="{{ url_for('setprofile') }}">Edit Profile</a></button>
+          {% if not current_user.is_anonymous and current_user.has_role('psycologist') and my_info.id==current_user.id %}
+          <button class="btn btn-success btn-lg"><a href="{{ url_for('setprofile',p_id=my_info.id) }}">Edit Profile</a></button>
           {% endif %}
         </div>
       </div>

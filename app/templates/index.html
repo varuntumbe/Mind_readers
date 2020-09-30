@@ -23,7 +23,7 @@
     <body id="page-top">
 
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
   
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
@@ -47,8 +47,47 @@
                 {% endif %}
               </ul>
             </div>
-          </nav>
+          </nav> -->
 
+
+
+
+
+
+
+
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="{{ url_for('index') }}">Home</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url_for('questions') }}">Questions</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url_for('conf') }}">Confessions</a></li>
+
+                        {% if current_user.is_anonymous %}
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="./login">Login</a></li>
+                        {% endif %}
+                        {% if current_user.is_anonymous %}
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url_for('reg') }}">Register</a></li>
+                        {% endif %}
+                        {% if current_user.has_role('admin') %}
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="./admin/">Admin</a></li>
+                        {% endif %}
+                        {% if current_user.has_role('psycologist') %}
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url_for('answers') }}">Answer these</a></li>
+                        {% endif %}
+                        {% if current_user.has_role('psycologist') %}
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url_for('viewprofile',psy_id=current_user.id) }}">View_Profile</a></li>
+                        {% endif %}
+                        {% if not current_user.is_anonymous %}
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="./logout">Logout</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
 
        
@@ -62,7 +101,7 @@
                     </div>
                     <div class="col-lg-8 align-self-baseline">
                         <p class="text-white-75 font-weight-light mb-5">An environment of well being where troubled minds can seek assistance from the best counsellors and therapists- absolutely free!</p>
-                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Ask a Question!</a>
+                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="{{ url_for('conf') }}">Ask a Question!</a>
                     </div>
                 </div>
             </div>
@@ -75,7 +114,7 @@
                         <h2 class="text-white mt-0">The Best Counsellors!</h2>
                         <hr class="divider light my-4" />
                         <p class="text-white-50 mb-4">Only the best psychologists and therapists are registered onto MindReaders. Also your details are kept completely confidential!</p>
-                        <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Register Now!</a>
+                        <a class="btn btn-light btn-xl js-scroll-trigger" href="{{ url_for('reg') }}">Register Now!</a>
                     </div>
                 </div>
             </div>
@@ -127,6 +166,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script src="../static/js/scripts.js"></script>
     </body>
 </html>
