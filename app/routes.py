@@ -82,7 +82,7 @@ def reg():
     form=RegisterForm()
     if request.method == 'POST':
         f = request.files['file']
-        print(f.filename)
+        # print(f.filename)
         f.save(os.path.join(app.instance_path, 'files', secure_filename(f.filename)))
         psy_name=form.email.data
         psy_password=form.password.data

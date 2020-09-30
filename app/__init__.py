@@ -13,6 +13,7 @@ import os
 app=Flask(__name__)
 app.config.from_object(Config)
 os.makedirs(os.path.join(app.instance_path, 'files'), exist_ok=True)
+# os.makedirs(os.path.join(app.instance_path, 'profile_pics'), exist_ok=True)
 #Bootstrap instance
 Bootstrap(app)
 
