@@ -1,101 +1,132 @@
-{% extends "base_for_home.html" %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>MindReaders</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="../static/img/favicon.ico" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+        <!-- Third party plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../static/css/styles.css" rel="stylesheet" />
+
+    </head>
+    <body id="page-top">
+
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('conf') }}">ConfessPage</a></li>
+                {% if not current_user.is_anonymous %}
+                <li class="nav-item"><a class="nav-link" href="./logout">Logout</a></li>
+                {% endif %}
+                {% if current_user.has_role('admin') %}
+                <li class="nav-item"><a class="nav-link" href="./admin/">Admin</a></li>
+                {% endif %}
+                {% if current_user.is_anonymous %}
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('reg') }}">reg</a></li>
+                {% endif %}
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('questions') }}">questions</a></li>
+                {% if current_user.has_role('psycologist') %}
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('answers') }}">Answer these</a></li>
+                {% endif %}
+                {% if current_user.has_role('psycologist') %}
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('viewprofile',psy_id=current_user.id) }}">View_Profile</a></li>
+                {% endif %}
+              </ul>
+            </div>
+          </nav>
 
 
 
-{% block head %}
-{{ super() }}
-
-<title>MindReaders</title>
-<!-- Favicon-->
-<link rel="icon" type="image/x-icon" href="../static/assets/img/favicon.ico" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="../static/css/styles.css" rel="stylesheet" />
-
-
-{% endblock %}
-
-
-{% block content %}
-<body id="page-top">
        
-    <!-- Masthead-->
-    <header class="masthead">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center justify-content-center text-center">
-                <div class="col-lg-10 align-self-end">
-                    <h1 class="text-white ">MindReaders</h1>
-                    <hr class="divider my-4" />
-                </div>
-                <div class="col-lg-8 align-self-baseline">
-                    <p class="text-white-75 font-weight-light mb-5">An environment of well being where troubled minds can seek assistance from the best counsellors and therapists- absolutely free!</p>
-                    <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Ask a Question!</a>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- About-->
-    <section class="page-section bg-primary" id="about">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 text-center">
-                    <h2 class="text-white mt-0">The Best Counsellors!</h2>
-                    <hr class="divider light my-4" />
-                    <p class="text-white-50 mb-4">Only the best psychologists and therapists are registered onto MindReaders. Also your details are kept completely confidential!</p>
-                    <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Register Now!</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Services-->
-    <section class="page-section" id="services">
-        <div class="container">
-            <h2 class="text-center mt-0">What makes us Unique!</h2>
-            <hr class="divider my-4" />
-            <div class="row">
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="mt-5">
-                        <i class="fas fa-4x fa-gem text-primary mb-4"></i>
-                        <h3 class="h4 mb-2">Strong Team</h3>
-                        <p class="text-muted mb-0">Committed to improve the quality of one's mental health.</p>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-10 align-self-end">
+                        <h1 class="text-white ">MindReaders</h1>
+                        <hr class="divider my-4" />
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="mt-5">
-                        <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
-                        <h3 class="h4 mb-2">Easy-to-use Interface</h3>
-                        <p class="text-muted mb-0">Focused on providing the answers to life's toughest questions.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="mt-5">
-                        <i class="fas fa-4x fa-globe text-primary mb-4"></i>
-                        <h3 class="h4 mb-2">Free for All</h3>
-                        <p class="text-muted mb-0">Consultation around the globe free of charge!</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="mt-5">
-                        <i class="fas fa-4x fa-heart text-primary mb-4"></i>
-                        <h3 class="h4 mb-2">Best-in-class Psychologists</h3>
-                        <p class="text-muted mb-0">Therapists from all the elite psychology institutes!</p>
+                    <div class="col-lg-8 align-self-baseline">
+                        <p class="text-white-75 font-weight-light mb-5">An environment of well being where troubled minds can seek assistance from the best counsellors and therapists- absolutely free!</p>
+                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Ask a Question!</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </header>
+        <!-- About-->
+        <section class="page-section bg-primary" id="about">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="text-white mt-0">The Best Counsellors!</h2>
+                        <hr class="divider light my-4" />
+                        <p class="text-white-50 mb-4">Only the best psychologists and therapists are registered onto MindReaders. Also your details are kept completely confidential!</p>
+                        <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Register Now!</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Services-->
+        <section class="page-section" id="services">
+            <div class="container">
+                <h2 class="text-center mt-0">What makes us Unique!</h2>
+                <hr class="divider my-4" />
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-5">
+                            <i class="fas fa-4x fa-gem text-primary mb-4"></i>
+                            <h3 class="h4 mb-2">Strong Team</h3>
+                            <p class="text-muted mb-0">Committed to improve the quality of one's mental health.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-5">
+                            <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
+                            <h3 class="h4 mb-2">Easy-to-use Interface</h3>
+                            <p class="text-muted mb-0">Focused on providing the answers to life's toughest questions.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-5">
+                            <i class="fas fa-4x fa-globe text-primary mb-4"></i>
+                            <h3 class="h4 mb-2">Free for All</h3>
+                            <p class="text-muted mb-0">Consultation around the globe free of charge!</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-5">
+                            <i class="fas fa-4x fa-heart text-primary mb-4"></i>
+                            <h3 class="h4 mb-2">Best-in-class Psychologists</h3>
+                            <p class="text-muted mb-0">Therapists from all the elite psychology institutes!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+
     
-
-
-    <!-- Bootstrap core JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-    <!-- Third party plugin JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="../static/js/scripts.js"></script>
-</body>
-
-{{ super() }}
-
-{% endblock %}
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
