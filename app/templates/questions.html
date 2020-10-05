@@ -7,11 +7,28 @@ Question_Page
 
 
 {% block content %}
-<div class="container">
+<h1 class="text-center py-3">QUESTION HISTORY</h1>
+
+<div  class="container rounded my-4">
     {% for q in questions %}
     <div>
         {{ quest.question(q.id,q.q_title,q.q_desc,q.ans_text,q.psy_id,q.no_upvotes) }}
     </div>
     {% endfor %}
+
+    <div class="row">
+        <div class="col-xs-offset-5">
+        {% if prev_url %}
+
+            <button class="btn btn-info"><a href="{{ prev_url }}">Prev</a></button>
+        {% endif %}
+        {% if next_url %}
+
+            <button class="btn btn-info"><a href="{{ next_url }}">Next</a></button>
+        {% endif %}
+        </div>
+
+    </div>
 </div>
+
 {% endblock %}

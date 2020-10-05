@@ -95,8 +95,15 @@ def reg():
 #shows all the questions
 @app.route('/questions')
 def questions():
-    all_quest=FilQuestions.query.all()
-    return render_template('questions.html',questions=all_quest)
+    page = request.args.get('page', type=int, default=1)
+    all_quest=FilQuestions.query.paginate(page,app.config['POST_PER_PAGE'],False)
+    prev_url=next_url=None
+    if all_quest.has_next:
+        next_url=url_for('questions',page=all_quest.next_num)
+    if all_quest.has_prev:
+        prev_url=url_for('questions',page=all_quest.prev_num)
+
+    return render_template('questions.html',questions=all_quest.items,next_url=next_url,prev_url=prev_url)
 
 #next route is for answer
 @app.route('/answer',methods=['GET','POST'])

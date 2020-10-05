@@ -10,3 +10,4 @@ class Config(object):
     FLASK_ADMIN_SWATCH = 'cyborg'
     SECURITY_PASSWORD_SALT='saltsaltsalty'
     SECURITY_PASSWORD_HASH='sha512_crypt'
+    POST_PER_PAGE= 5
